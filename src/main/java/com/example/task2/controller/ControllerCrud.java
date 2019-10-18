@@ -1,5 +1,6 @@
 package com.example.task2.controller;
 
+import com.example.task2.errorHandling.StudentNotFoundException;
 import com.example.task2.model.studentModel;
 import com.example.task2.service.studentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class controllerCrud {
     }
 
     @PostMapping(value="createStudent", produces = "application/json")
-    public studentModel AddNew(@RequestBody studentModel studentEntry){
+    public studentModel AddNew(studentModel studentEntry){
         studentModel response=studentservice.CreateNewRecord(studentEntry);
         return response;
         //return new ResponseEntity<studentModel>(response, HttpStatus.OK);
@@ -31,18 +32,22 @@ public class controllerCrud {
         return response;
     }
     @RequestMapping(value="updateStudent", method= RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<studentModel> updateInfo(@RequestBody studentModel studentEntry){
+    public ResponseEntity<studentModel> updateInfo(studentModel studentModel){
         studentModel response=studentservice.updateRecord(studentEntry);
         return new ResponseEntity<studentModel>(response, HttpStatus.OK);
     }
-    @RequestMapping(value="deleteStudent/{id}", method= RequestMethod.DELETE, produces = "application/json")
+    @DeleteMapping(value="deleteStudent/{id}", produces = "application/json")
     public studentModel deleteStudent(@PathVariable int id){
         return studentservice.deleteRecord(id);
 
     }
     @GetMapping(value="findStudent/{id}",  produces = "application/json")
-    public studentModel findStudent(@PathVariable int id){
-      studentModel result = studentservice.findStudent(id);
-        return result;
+    public studentModel findStudent(@PathVariable int id) {
+        studentModel result = studentservice.findStudent(id);
+        if (result.getName() != null) {
+            throw  new StudentNotFoundException(id);
+        } else {
+            return result;
+        }
     }
 }
