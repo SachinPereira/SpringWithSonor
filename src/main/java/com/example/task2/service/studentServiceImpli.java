@@ -51,11 +51,9 @@ public class studentServiceImpli implements studentService {
 
     @Override
     public studentModel findStudent(int id) {
-//        return repository.findById(id)
-//                .orElseThrow(()-> new StudentNotFoundException(id));
-        studentModel st=new studentModel();
-        st.setName("sachin");
-        return st;
+        return repository.findById(id)
+                .orElseThrow(()-> new StudentNotFoundException(id));
+
     }
 
 
