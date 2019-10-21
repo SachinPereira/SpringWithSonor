@@ -1,4 +1,4 @@
-package com.example.task2.errorHandling;
+package com.example.task2.errorhandling;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,7 +10,7 @@ import java.io.IOException;
 @ControllerAdvice
 public class ErrorHandling extends ResponseEntityExceptionHandler {
     @ExceptionHandler(StudentNotFoundException.class)
-    public void abd(HttpServletResponse response) throws IOException{
+    public void error(HttpServletResponse response) throws IOException{
         response.sendError(HttpStatus.BAD_REQUEST.value());
     }
 

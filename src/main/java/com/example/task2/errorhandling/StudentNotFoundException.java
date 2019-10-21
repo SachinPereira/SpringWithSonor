@@ -1,4 +1,4 @@
-package com.example.task2.errorHandling;
+package com.example.task2.errorhandling;
 
 public class StudentNotFoundException extends RuntimeException {
     public StudentNotFoundException(int id){

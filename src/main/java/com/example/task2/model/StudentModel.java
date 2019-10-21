@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="task2")
-public class studentModel {
+public class StudentModel {
     @Id
     @GeneratedValue
     int idtask2;
@@ -12,8 +12,14 @@ public class studentModel {
     String name;
     @Column(name="address")
     String address;
-    @Column(name="phone_number")
-    String phone_number;
+    @Column(name="phonenumber")
+    String phonenumber;
+
+    public StudentModel(String sachin, String jog, String s) {
+        name=sachin;
+        address=jog;
+        phonenumber=s;
+    }
 
     @Override
     public String toString() {
@@ -21,7 +27,7 @@ public class studentModel {
                 "idtask2=" + idtask2 +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                ", phone_number=" + phone_number +
+                ", phone_number=" + phonenumber +
                 '}';
     }
 
@@ -49,22 +55,22 @@ public class studentModel {
         this.address = address;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
-    public studentModel(int idtask2, String name, String address, String phone_number) {
+    public StudentModel(int idtask2, String name, String address, String phonenumber) {
         this.idtask2 = idtask2;
         this.name = name;
         this.address = address;
-        this.phone_number = phone_number;
+        this.phonenumber = phonenumber;
     }
 
-    public studentModel() {
+    public StudentModel() {
         super();
     }
 }

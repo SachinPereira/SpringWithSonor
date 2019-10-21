@@ -10,20 +10,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class studentServiceImpli implements StudentService {
+public class StudentServiceImpli implements StudentService {
     @Autowired
     StudentRepository repository;
     StudentNotFoundException exception;
+    public StudentServiceImpli(StudentRepository repository) {
 
-    public studentServiceImpli(StudentRepository repository) {
         this.repository=repository;
     }
-
     @Override
-    public StudentModel CreateNewRecord(StudentModel studentEntry) {
+    public StudentModel createNewRecord(StudentModel studentEntry) {
         return repository.save(studentEntry);
     }
-
     @Override
     public List<StudentModel> getAllRecords() {
         return (List<StudentModel>) repository.findAll();

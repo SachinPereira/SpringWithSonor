@@ -4,8 +4,8 @@ import com.example.task2.model.StudentModel;
 
 import java.util.List;
 
-public interface studentService {
-    public StudentModel CreateNewRecord(StudentModel studentEntry);
+public interface StudentService {
+    public StudentModel createNewRecord(StudentModel studentEntry);
     public List<StudentModel> getAllRecords();
     public StudentModel deleteRecord(int id);
     public StudentModel updateRecord(StudentModel student);

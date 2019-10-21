@@ -1,7 +1,7 @@
 package com.example.task2.UnitTesting;
-import com.example.task2.controller.controllerCrud;
-import com.example.task2.model.studentModel;
-import com.example.task2.service.studentServiceImpli;
+import com.example.task2.controller.ControllerCrud;
+import com.example.task2.model.StudentModel;
+import com.example.task2.service.StudentServiceImpli;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -18,48 +18,48 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class unitTestService {
     @InjectMocks
-    private controllerCrud controller;
+    private ControllerCrud controller;
     @Mock
-    private studentServiceImpli service;
+    private StudentServiceImpli service;
 
     @Test
     public void createStudent(){
-        studentModel student=new studentModel();
-        when(service.CreateNewRecord(student)).thenReturn(student);
-        assertEquals(student,controller.AddNew(student));
+        StudentModel student=new StudentModel();
+        when(service.createNewRecord(student)).thenReturn(student);
+        assertEquals(student,controller.createRecord(student));
     }
     @Test
     public void displayStudent(){
-        List<studentModel> response=new ArrayList<studentModel>();
+        List<StudentModel> response=new ArrayList<StudentModel>();
         when(service.getAllRecords()).thenReturn(response);
         assertEquals(response,controller.getAllStudent());
     }
     @Test
     public void findStudent(){
         int id=1;
-        when(service.findStudent(id)).thenReturn(new studentModel(1,"sachin","Jog","788"));
+        when(service.findStudent(id)).thenReturn(new StudentModel(1,"sachin","Jog","788"));
         assertThat(controller.findStudent(1).getName()).isEqualTo("sachin");
         assertThat(controller.findStudent(1).getIdtask2()).isEqualTo(1);
-        assertThat(controller.findStudent(1).getPhone_number()).isEqualTo("788");
+        assertThat(controller.findStudent(1).getPhonenumber()).isEqualTo("788");
         assertThat(controller.findStudent(1).getAddress()).isEqualTo("Jog");
 
     }
     @Test
     public void delete(){
         int id=1;
-        when(service.deleteRecord(1)).thenReturn(new studentModel(1,"sachin","Jog","777"));
+        when(service.deleteRecord(1)).thenReturn(new StudentModel(1,"sachin","Jog","777"));
         assertThat(controller.deleteStudent(1).getIdtask2()).isEqualTo(1);
         assertThat(controller.deleteStudent(1).getName()).isEqualTo("sachin");
         assertThat(controller.deleteStudent(1).getAddress()).isEqualTo("Jog");
-        assertThat(controller.deleteStudent(1).getPhone_number()).isEqualTo("777");
+        assertThat(controller.deleteStudent(1).getPhonenumber()).isEqualTo("777");
     }
     @Test
     public void update(){
-        studentModel st=new studentModel(1,"sachin","Jog","777");
-        when(service.updateRecord(st)).thenReturn(new studentModel(1,"sachin","Jog","777"));
-        assertThat(controller.updateInfo(st).getBody().getName()).isEqualTo("sachin");
-        assertThat(controller.updateInfo(st).getBody().getPhone_number()).isEqualTo("777");
-        assertThat(controller.updateInfo(st).getBody().getAddress()).isEqualTo("Jog");
-        assertThat(controller.updateInfo(st).getBody().getIdtask2()).isEqualTo(1);
+        StudentModel st=new StudentModel(1,"sachin","Jog","777");
+        when(service.updateRecord(st)).thenReturn(new StudentModel(1,"sachin","Jog","777"));
+        assertThat(controller.updateInfo(st).getName()).isEqualTo("sachin");
+        assertThat(controller.updateInfo(st).getPhonenumber()).isEqualTo("777");
+        assertThat(controller.updateInfo(st).getAddress()).isEqualTo("Jog");
+        assertThat(controller.updateInfo(st).getIdtask2()).isEqualTo(1);
     }
 }
